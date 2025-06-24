@@ -6,29 +6,21 @@ import java.awt.*;
 public class DisplayPanel extends JPanel {
 
     private JTextField displayField;
-    private JLabel errorLabel;
 
     public DisplayPanel() {
         setLayout(new BorderLayout());
+        setBackground(new Color(34, 34, 34));
 
-        // Display field for expressions/results
         displayField = new JTextField();
         displayField.setFont(new Font("Arial", Font.BOLD, 24));
         displayField.setEditable(false);
         displayField.setHorizontalAlignment(SwingConstants.RIGHT);
-        displayField.setBackground(Color.WHITE);
-        displayField.setPreferredSize(new Dimension(400, 50));
+        displayField.setBackground(new Color(50, 50, 50));
+        displayField.setForeground(Color.WHITE);
+        displayField.setPreferredSize(new Dimension(350, 50));
         add(displayField, BorderLayout.CENTER);
-
-        // Error label (below the display field)
-        errorLabel = new JLabel(" ");
-        errorLabel.setForeground(Color.RED);
-        errorLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-        errorLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        add(errorLabel, BorderLayout.SOUTH);
     }
 
-    // Set the text shown in the main display
     public void setDisplayText(String text) {
         displayField.setText(text);
     }
@@ -39,15 +31,5 @@ public class DisplayPanel extends JPanel {
 
     public JTextField getDisplayField() {
         return displayField;
-    }
-
-    // Show an error message in red
-    public void showError(String message) {
-        errorLabel.setText(message);
-    }
-
-    // Clear any existing error message
-    public void clearError() {
-        errorLabel.setText(" ");
     }
 }

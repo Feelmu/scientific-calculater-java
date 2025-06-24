@@ -6,93 +6,80 @@ import java.awt.event.ActionListener;
 
 public class ScientificPanel extends JPanel {
 
-    private JButton sinButton, cosButton, tanButton;
-    private JButton asinButton, acosButton, atanButton;
-    private JButton logButton, lnButton;
-    private JButton expButton, tenPowerButton;
-    private JButton sqrtButton, powerButton, factorialButton;
+    private JButton sinBtn, cosBtn, tanBtn, asinBtn, acosBtn, atanBtn;
+    private JButton logBtn, lnBtn, expBtn, tenPowBtn, sqrtBtn, powerBtn, factorialBtn;
 
     public ScientificPanel() {
         setLayout(new GridLayout(4, 4, 5, 5));
+        setBackground(new Color(34, 34, 34));
 
-        sinButton = new JButton("sin");
-        cosButton = new JButton("cos");
-        tanButton = new JButton("tan");
-        asinButton = new JButton("asin");
-        acosButton = new JButton("acos");
-        atanButton = new JButton("atan");
-        logButton = new JButton("log");
-        lnButton = new JButton("ln");
-        expButton = new JButton("e^x");
-        tenPowerButton = new JButton("10^x");
-        sqrtButton = new JButton("√");
-        powerButton = new JButton("^");
-        factorialButton = new JButton("n!");
+        sinBtn = createButton("sin");
+        cosBtn = createButton("cos");
+        tanBtn = createButton("tan");
+        asinBtn = createButton("asin");
+        acosBtn = createButton("acos");
 
-        add(sinButton);
-        add(cosButton);
-        add(tanButton);
-        add(asinButton);
-        add(acosButton);
-        add(atanButton);
-        add(logButton);
-        add(lnButton);
-        add(expButton);
-        add(tenPowerButton);
-        add(sqrtButton);
-        add(powerButton);
-        add(factorialButton);
+        atanBtn = createButton("atan");
+        logBtn = createButton("log");
+        lnBtn = createButton("ln");
+        expBtn = createButton("e^x");
+        tenPowBtn = createButton("10^x");
+
+        sqrtBtn = createButton("√");
+        powerBtn = createButton("x^y");
+        factorialBtn = createButton("n!");
+
+        add(sinBtn);
+        add(cosBtn);
+        add(tanBtn);
+        add(asinBtn);
+        add(acosBtn);
+
+        add(atanBtn);
+        add(logBtn);
+        add(lnBtn);
+        add(expBtn);
+        add(tenPowBtn);
+
+        add(sqrtBtn);
+        add(powerBtn);
+        add(factorialBtn);
+
+        // Fill remaining grid cells with empty labels to keep layout consistent
+        for (int i = 0; i < 2; i++) {
+            add(new JLabel(""));
+        }
     }
 
-    public void addSinListener(ActionListener listener) {
-        sinButton.addActionListener(listener);
+    private JButton createButton(String text) {
+        JButton btn = new JButton(text);
+        btn.setFont(new Font("Arial", Font.BOLD, 14));
+        btn.setFocusPainted(false);
+        return btn;
     }
 
-    public void addCosListener(ActionListener listener) {
-        cosButton.addActionListener(listener);
+    public void setButtonColors(Color bg, Color fg) {
+        JButton[] buttons = {sinBtn, cosBtn, tanBtn, asinBtn, acosBtn,
+                atanBtn, logBtn, lnBtn, expBtn, tenPowBtn,
+                sqrtBtn, powerBtn, factorialBtn};
+        for (JButton btn : buttons) {
+            btn.setBackground(bg);
+            btn.setForeground(fg);
+        }
     }
 
-    public void addTanListener(ActionListener listener) {
-        tanButton.addActionListener(listener);
-    }
-
-    public void addAsinListener(ActionListener listener) {
-        asinButton.addActionListener(listener);
-    }
-
-    public void addAcosListener(ActionListener listener) {
-        acosButton.addActionListener(listener);
-    }
-
-    public void addAtanListener(ActionListener listener) {
-        atanButton.addActionListener(listener);
-    }
-
-    public void addLogListener(ActionListener listener) {
-        logButton.addActionListener(listener);
-    }
-
-    public void addLnListener(ActionListener listener) {
-        lnButton.addActionListener(listener);
-    }
-
-    public void addExpListener(ActionListener listener) {
-        expButton.addActionListener(listener);
-    }
-
-    public void addTenPowerListener(ActionListener listener) {
-        tenPowerButton.addActionListener(listener);
-    }
-
-    public void addSqrtListener(ActionListener listener) {
-        sqrtButton.addActionListener(listener);
-    }
-
-    public void addPowerListener(ActionListener listener) {
-        powerButton.addActionListener(listener);
-    }
-
-    public void addFactorialListener(ActionListener listener) {
-        factorialButton.addActionListener(listener);
-    }
+    // Listeners
+    public void addSinListener(ActionListener l) { sinBtn.addActionListener(l); }
+    public void addCosListener(ActionListener l) { cosBtn.addActionListener(l); }
+    public void addTanListener(ActionListener l) { tanBtn.addActionListener(l); }
+    public void addAsinListener(ActionListener l) { asinBtn.addActionListener(l); }
+    public void addAcosListener(ActionListener l) { acosBtn.addActionListener(l); }
+    public void addAtanListener(ActionListener l) { atanBtn.addActionListener(l); }
+    public void addLogListener(ActionListener l) { logBtn.addActionListener(l); }
+    public void addLnListener(ActionListener l) { lnBtn.addActionListener(l); }
+    public void addExpListener(ActionListener l) { expBtn.addActionListener(l); }
+    public void addTenPowerListener(ActionListener l) { tenPowBtn.addActionListener(l); }
+    public void addSqrtListener(ActionListener l) { sqrtBtn.addActionListener(l); }
+    public void addPowerListener(ActionListener l) { powerBtn.addActionListener(l); }
+    public void addFactorialListener(ActionListener l) { factorialBtn.addActionListener(l); }
 }

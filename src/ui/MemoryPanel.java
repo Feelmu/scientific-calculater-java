@@ -10,12 +10,13 @@ public class MemoryPanel extends JPanel {
 
     public MemoryPanel() {
         setLayout(new GridLayout(1, 5, 5, 5));
+        setBackground(new Color(34, 34, 34));
 
-        msButton = new JButton("MS");
-        mrButton = new JButton("MR");
-        mcButton = new JButton("MC");
-        mPlusButton = new JButton("M+");
-        mMinusButton = new JButton("M-");
+        msButton = createButton("MS");
+        mrButton = createButton("MR");
+        mcButton = createButton("MC");
+        mPlusButton = createButton("M+");
+        mMinusButton = createButton("M-");
 
         add(msButton);
         add(mrButton);
@@ -24,23 +25,25 @@ public class MemoryPanel extends JPanel {
         add(mMinusButton);
     }
 
-    public void addMemoryStoreListener(ActionListener listener) {
-        msButton.addActionListener(listener);
+    private JButton createButton(String text) {
+        JButton btn = new JButton(text);
+        btn.setFont(new Font("Arial", Font.BOLD, 14));
+        btn.setFocusPainted(false);
+        return btn;
     }
 
-    public void addMemoryRecallListener(ActionListener listener) {
-        mrButton.addActionListener(listener);
+    public void setButtonColors(Color bg, Color fg) {
+        msButton.setBackground(bg); msButton.setForeground(fg);
+        mrButton.setBackground(bg); mrButton.setForeground(fg);
+        mcButton.setBackground(bg); mcButton.setForeground(fg);
+        mPlusButton.setBackground(bg); mPlusButton.setForeground(fg);
+        mMinusButton.setBackground(bg); mMinusButton.setForeground(fg);
     }
 
-    public void addMemoryClearListener(ActionListener listener) {
-        mcButton.addActionListener(listener);
-    }
-
-    public void addMemoryAddListener(ActionListener listener) {
-        mPlusButton.addActionListener(listener);
-    }
-
-    public void addMemorySubtractListener(ActionListener listener) {
-        mMinusButton.addActionListener(listener);
-    }
+    // Listeners
+    public void addMemoryStoreListener(ActionListener l) { msButton.addActionListener(l); }
+    public void addMemoryRecallListener(ActionListener l) { mrButton.addActionListener(l); }
+    public void addMemoryClearListener(ActionListener l) { mcButton.addActionListener(l); }
+    public void addMemoryAddListener(ActionListener l) { mPlusButton.addActionListener(l); }
+    public void addMemorySubtractListener(ActionListener l) { mMinusButton.addActionListener(l); }
 }
