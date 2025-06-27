@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * Panel with memory function buttons: MS, MR, MC, M+, M-
+ */
 public class MemoryPanel extends JPanel {
 
     private JButton msButton, mrButton, mcButton, mPlusButton, mMinusButton;
@@ -29,6 +32,8 @@ public class MemoryPanel extends JPanel {
         JButton btn = new JButton(text);
         btn.setFont(new Font("Arial", Font.BOLD, 14));
         btn.setFocusPainted(false);
+        btn.setBackground(new Color(60, 63, 65));
+        btn.setForeground(Color.WHITE);
         return btn;
     }
 

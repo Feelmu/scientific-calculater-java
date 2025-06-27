@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * Panel with basic operation buttons: +, -, ×, ÷, =, C (clear)
+ */
 public class BasicOperationsPanel extends JPanel {
 
     private JButton addButton, subtractButton, multiplyButton, divideButton;
@@ -32,6 +35,8 @@ public class BasicOperationsPanel extends JPanel {
         JButton btn = new JButton(text);
         btn.setFont(new Font("Arial", Font.BOLD, 18));
         btn.setFocusPainted(false);
+        btn.setBackground(new Color(60, 63, 65));
+        btn.setForeground(Color.WHITE);
         return btn;
     }
 
@@ -43,7 +48,7 @@ public class BasicOperationsPanel extends JPanel {
         }
     }
 
-    // Getters for adding to container in MainFrame
+    // Getters for buttons
     public JButton getAddButton() { return addButton; }
     public JButton getSubtractButton() { return subtractButton; }
     public JButton getMultiplyButton() { return multiplyButton; }
@@ -51,7 +56,7 @@ public class BasicOperationsPanel extends JPanel {
     public JButton getEqualsButton() { return equalsButton; }
     public JButton getClearButton() { return clearButton; }
 
-    // Listeners
+    // Listeners for buttons
     public void addAddListener(ActionListener l) { addButton.addActionListener(l); }
     public void addSubtractListener(ActionListener l) { subtractButton.addActionListener(l); }
     public void addMultiplyListener(ActionListener l) { multiplyButton.addActionListener(l); }

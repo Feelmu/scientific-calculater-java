@@ -7,6 +7,7 @@ public abstract class Operation {
 
 // Addition
 class Addition extends Operation {
+    @Override
     public double calculate(double... operands) {
         return operands[0] + operands[1];
     }
@@ -14,6 +15,7 @@ class Addition extends Operation {
 
 // Subtraction
 class Subtraction extends Operation {
+    @Override
     public double calculate(double... operands) {
         return operands[0] - operands[1];
     }
@@ -21,6 +23,7 @@ class Subtraction extends Operation {
 
 // Multiplication
 class Multiplication extends Operation {
+    @Override
     public double calculate(double... operands) {
         return operands[0] * operands[1];
     }
@@ -28,6 +31,7 @@ class Multiplication extends Operation {
 
 // Division
 class Division extends Operation {
+    @Override
     public double calculate(double... operands) {
         if (operands[1] == 0) {
             throw new ArithmeticException("Cannot divide by zero.");
@@ -38,33 +42,41 @@ class Division extends Operation {
 
 // Power (a ^ b)
 class Power extends Operation {
+    @Override
     public double calculate(double... operands) {
         return Math.pow(operands[0], operands[1]);
     }
 }
 
-// Percentage (a % b)
+// Percentage (a % b) — typically a% of b is (a / 100) * b, but here mod operator
 class Percentage extends Operation {
+    @Override
     public double calculate(double... operands) {
-        return operands[0] % operands[1];
+        // Calculate percentage as (a / 100) * b
+        return (operands[0] / 100) * operands[1];
     }
 }
 
 // Square root (√a)
 class SquareRoot extends Operation {
+    @Override
     public double calculate(double... operands) {
+        if (operands[0] < 0) {
+            throw new ArithmeticException("Square root of negative number.");
+        }
         return Math.sqrt(operands[0]);
     }
 }
 
 // Sine function
 class Sine extends Operation {
-    private boolean isDegree;
+    private final boolean isDegree;
 
     public Sine(boolean isDegree) {
         this.isDegree = isDegree;
     }
 
+    @Override
     public double calculate(double... operands) {
         double angle = operands[0];
         if (isDegree) {
@@ -76,12 +88,13 @@ class Sine extends Operation {
 
 // Cosine function
 class Cosine extends Operation {
-    private boolean isDegree;
+    private final boolean isDegree;
 
     public Cosine(boolean isDegree) {
         this.isDegree = isDegree;
     }
 
+    @Override
     public double calculate(double... operands) {
         double angle = operands[0];
         if (isDegree) {
@@ -93,12 +106,13 @@ class Cosine extends Operation {
 
 // Tangent function
 class Tangent extends Operation {
-    private boolean isDegree;
+    private final boolean isDegree;
 
     public Tangent(boolean isDegree) {
         this.isDegree = isDegree;
     }
 
+    @Override
     public double calculate(double... operands) {
         double angle = operands[0];
         if (isDegree) {
@@ -110,20 +124,29 @@ class Tangent extends Operation {
 
 // Logarithm base 10 (log)
 class Log10 extends Operation {
+    @Override
     public double calculate(double... operands) {
+        if (operands[0] <= 0) {
+            throw new ArithmeticException("Logarithm undefined for non-positive numbers.");
+        }
         return Math.log10(operands[0]);
     }
 }
 
 // Natural logarithm (ln)
 class NaturalLog extends Operation {
+    @Override
     public double calculate(double... operands) {
+        if (operands[0] <= 0) {
+            throw new ArithmeticException("Natural logarithm undefined for non-positive numbers.");
+        }
         return Math.log(operands[0]);
     }
 }
 
 // Exponential function (e^x)
 class Exponential extends Operation {
+    @Override
     public double calculate(double... operands) {
         return Math.exp(operands[0]);
     }
@@ -131,13 +154,14 @@ class Exponential extends Operation {
 
 // Factorial (n!)
 class Factorial extends Operation {
+    @Override
     public double calculate(double... operands) {
         double n = operands[0];
         if (n < 0 || n != (int) n) {
             throw new IllegalArgumentException("Factorial is only defined for non-negative integers.");
         }
         double result = 1;
-        for (int i = 1; i <= (int)n; i++) {
+        for (int i = 1; i <= (int) n; i++) {
             result *= i;
         }
         return result;

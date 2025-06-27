@@ -1,4 +1,4 @@
-# Scientific Calculator (Java Swing)
+git# Scientific Calculator (Java Swing)
 
 This is a desktop Scientific Calculator application developed in Java using the Swing framework. It supports both basic arithmetic and advanced scientific operations, including trigonometric functions, logarithmic functions, exponential functions, factorial, and memory storage.
 

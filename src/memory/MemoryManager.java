@@ -1,5 +1,8 @@
 package memory;
 
+/**
+ * Manages memory storage for calculator (MS, MR, MC, M+, M-)
+ */
 public class MemoryManager {
     private double memoryValue = 0.0;
 

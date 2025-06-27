@@ -11,54 +11,77 @@ public class NumericKeypadPanel extends JPanel {
     private JButton plusMinusButton;
 
     public NumericKeypadPanel() {
-        setLayout(new GridLayout(4, 3, 5, 5));
+        setLayout(new GridLayout(4, 3, 5, 5)); // 4 rows x 3 columns grid
         setBackground(new Color(34, 34, 34));
 
         digitButtons = new JButton[10];
-        for (int i = 1; i <= 9; i++) {
+        for (int i = 0; i <= 9; i++) {
             digitButtons[i] = createButton(String.valueOf(i));
-            add(digitButtons[i]);
         }
 
-        plusMinusButton = createButton("+/-");
-        add(plusMinusButton);
-
-        digitButtons[0] = createButton("0");
-        add(digitButtons[0]);
-
         decimalButton = createButton(".");
+        plusMinusButton = createButton("+/-");
+
+        // Add buttons to layout in calculator numeric keypad order
+        // Row 1: 7 8 9
+        // Row 2: 4 5 6
+        // Row 3: 1 2 3
+        // Row 4: +/- 0 .
+        add(digitButtons[7]);
+        add(digitButtons[8]);
+        add(digitButtons[9]);
+
+        add(digitButtons[4]);
+        add(digitButtons[5]);
+        add(digitButtons[6]);
+
+        add(digitButtons[1]);
+        add(digitButtons[2]);
+        add(digitButtons[3]);
+
+        add(plusMinusButton);
+        add(digitButtons[0]);
         add(decimalButton);
     }
 
+    // Helper method to create a styled button
     private JButton createButton(String text) {
-        JButton btn = new JButton(text);
-        btn.setFont(new Font("Arial", Font.BOLD, 18));
-        btn.setFocusPainted(false);
-        return btn;
+        JButton button = new JButton(text);
+        button.setFont(new Font("Arial", Font.BOLD, 18));
+        button.setBackground(new Color(60, 63, 65));
+        button.setForeground(Color.WHITE);
+        button.setFocusPainted(false);
+        return button;
     }
 
-    public void addDigitListener(ActionListener listener) {
-        for (int i = 0; i <= 9; i++) {
-            digitButtons[i].addActionListener(listener);
+    // Set button colors for dark mode or theming
+    public void setButtonColors(Color bg, Color fg) {
+        for (Component c : getComponents()) {
+            if (c instanceof JButton) {
+                c.setBackground(bg);
+                c.setForeground(fg);
+            }
         }
     }
 
+    // Add action listeners to digit buttons 0-9
+    public void addDigitListener(ActionListener listener) {
+        for (JButton btn : digitButtons) {
+            btn.addActionListener(listener);
+        }
+    }
+
+    // Add listener for decimal point button
     public void addDecimalListener(ActionListener listener) {
         decimalButton.addActionListener(listener);
     }
 
+    // Add listener for plus-minus toggle button
     public void addPlusMinusListener(ActionListener listener) {
         plusMinusButton.addActionListener(listener);
     }
 
-    public void setButtonColors(Color bg, Color fg) {
-        for (int i = 0; i <= 9; i++) {
-            digitButtons[i].setBackground(bg);
-            digitButtons[i].setForeground(fg);
-        }
-        decimalButton.setBackground(bg);
-        decimalButton.setForeground(fg);
-        plusMinusButton.setBackground(bg);
-        plusMinusButton.setForeground(fg);
+
+    public void removeParenthesesAndPercentButtons() {
     }
 }
